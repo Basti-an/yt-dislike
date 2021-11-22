@@ -80,6 +80,8 @@ sentinel.on("#menu .style-scope.ytd-video-primary-info-renderer", () => {
 
   // attach click listener to manipulate dislike count locally
   $dislikeButton.addEventListener("click", dislike($dislikeButton));
+
+  sentinel.off("#menu .style-scope.ytd-video-primary-info-renderer");
 });
 
 // since youtube uses its own router we use this event to refire our script when video changes
