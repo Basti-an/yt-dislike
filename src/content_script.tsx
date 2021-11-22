@@ -50,34 +50,51 @@ const dislike = ($dislikeButton: Element) => () => {
   // check if video is already disliked by checking for style-default-active in classlist of $dislikeButton
   const { classList } = $dislikeButton;
   const isDisliked = [...classList].indexOf("style-default-active") !== -1;
+  console.log("is already disliked: " + isDisliked);
 
   if (isDisliked) {
-    // subtract from dislike count
-    dislikeCount -= 1;
-  } else {
     // add to dislike count
     dislikeCount += 1;
+  } else {
+    // subtract from dislike count
+    dislikeCount -= 1;
   }
 
   $buttonText.innerHTML = dislikeCount.toString();
 };
 
+function requestDislikeCount($dislikeButton: Element) {
+  const video_id = document.location.search.split("=")[1]; // might not work for playlists and stuff?
+  chrome.runtime.sendMessage({ video_id }, async function (response) {
+    console.log("answer from backend:");
+    console.log(response);
+    const { dislikes } = response;
+    console.log(dislikes);
+    setDislikeCount(dislikes, $dislikeButton);
+  });
+}
+
+function setDislikeCount(dislikeCount: number, $dislikeButton: Element) {
+  const $buttonText = getDislikeButtonText($dislikeButton);
+  $buttonText.innerHTML = dislikeCount.toString();
+}
+
 function main() {
   const $dislikeButton = getDislikeButton();
-  const $buttonText = getDislikeButtonText($dislikeButton);
-
-  const dislikeCount = Math.floor(Math.random() * 1000);
-  $buttonText.innerHTML = dislikeCount.toString();
-  $dislikeButton.addEventListener("click", dislike($dislikeButton));
+  requestDislikeCount($dislikeButton);
+  return $dislikeButton;
 }
 
 // wait until like/dislike menu is rendered
 if (typeof sentinel.on !== "function") {
   console.error("yt-dislike: cannot init sentinel-js");
 }
-sentinel.on("#menu .style-scope.ytd-video-primary-info-renderer", main);
+sentinel.on("#menu .style-scope.ytd-video-primary-info-renderer", () => {
+  const $dislikeButton = main();
+
+  // attach click listener to manipulate dislike count locally
+  $dislikeButton.addEventListener("click", dislike($dislikeButton));
+});
 
 // since youtube uses its own router we use this event to refire our script when video changes
-window.addEventListener("yt-page-data-updated", function () {
-  main();
-});
+window.addEventListener("yt-page-data-updated", main);
