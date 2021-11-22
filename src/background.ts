@@ -6,16 +6,11 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
     return;
   }
 
-  console.log(msg.video_id);
-
   const response = fetch(
     `https://www.googleapis.com/youtube/v3/videos?key=${API_KEY}&id=${msg.video_id}&part=statistics`
   ).then((response) => {
     response.json().then((body) => {
       const dislikes = body.items[0].statistics.dislikeCount;
-      console.log(body);
-      console.log(dislikes);
-
       sendResponse({ dislikes });
     });
   });

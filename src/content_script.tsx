@@ -1,12 +1,3 @@
-// chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
-//   if (msg.color) {
-//     console.log("Receive color = " + msg.color);
-//     document.body.style.backgroundColor = msg.color;
-//     sendResponse("Change color to " + msg.color);
-//   } else {
-//     sendResponse("Color message is none.");
-//   }
-// });
 import sentinel from "sentinel-js";
 
 /** returns input if its not null, throws generic error if input is null */
@@ -43,14 +34,12 @@ function getDislikeButtonText($dislikeButton: Element) {
 }
 
 const dislike = ($dislikeButton: Element) => () => {
-  console.log("DISLIKE");
   const $buttonText = getDislikeButtonText($dislikeButton);
   let dislikeCount = parseInt($buttonText.innerHTML, 10);
 
   // check if video is already disliked by checking for style-default-active in classlist of $dislikeButton
   const { classList } = $dislikeButton;
   const isDisliked = [...classList].indexOf("style-default-active") !== -1;
-  console.log("is already disliked: " + isDisliked);
 
   if (isDisliked) {
     // add to dislike count
@@ -66,10 +55,7 @@ const dislike = ($dislikeButton: Element) => () => {
 function requestDislikeCount($dislikeButton: Element) {
   const video_id = document.location.search.split("=")[1]; // might not work for playlists and stuff?
   chrome.runtime.sendMessage({ video_id }, async function (response) {
-    console.log("answer from backend:");
-    console.log(response);
     const { dislikes } = response;
-    console.log(dislikes);
     setDislikeCount(dislikes, $dislikeButton);
   });
 }
