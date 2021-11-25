@@ -36,11 +36,7 @@ function getDislikeButton() {
 
 /** returns text node of dislike button or throws if it cant be located for some reason */
 function getDislikeButtonText($dislikeButton: Element) {
-  const $buttonText = $dislikeButton.querySelector("#text");
-  if (!$buttonText) {
-    throw new Error("yt-dislike: cannot find dislike button text");
-  }
-  return $buttonText;
+  return notNull($dislikeButton.querySelector("#text"), "dislike button text");
 }
 
 /** mimics the effect of disliking a video by locally changing
@@ -71,7 +67,7 @@ const dislike = ($dislikeButton: Element) => () => {
  */
 function requestDislikeCount($dislikeButton: Element) {
   const video_id = document.location.search.split("=")[1]; // might not work for playlists and stuff?
-  chrome.runtime.sendMessage({ video_id }, async function (response) {
+  chrome.runtime.sendMessage({ video_id }, function (response) {
     if (!response) {
       return;
     }
