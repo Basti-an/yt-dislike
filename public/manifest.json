@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
 
-  "name": "yt-dislike-count",
-  "description": "Bringing back the dislike count to youtube",
-  "version": "0.1",
+  "name": "YT Dislike counter",
+  "description": "This Extension brings the dislike count back to YouTube videos!",
+  "version": "0.2",
 
   "icons": {
     "16": "icon16.png",
@@ -30,5 +30,5 @@
 
   "permissions": ["identity"],
 
-  "host_permissions": ["*://*.youtube.com/watch*"]
+  "host_permissions": ["*://*.youtube.com/*"]
 }

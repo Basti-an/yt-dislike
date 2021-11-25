@@ -29,9 +29,8 @@ function getDislikeButton() {
     $infoBar.querySelector("#top-level-buttons-computed"),
     "like/dislike buttonBar"
   );
-  const $dislikeButton = $buttonTopBar.children[1]; // [like, dislike, whatever...]
 
-  return $dislikeButton;
+  return $buttonTopBar.children[1]; // [like, dislike, whatever...]
 }
 
 /** returns text node of dislike button or throws if it cant be located for some reason */
@@ -71,8 +70,7 @@ function requestDislikeCount($dislikeButton: Element) {
     if (!response) {
       return;
     }
-    const { dislikes } = response;
-    setDislikeCount(dislikes, $dislikeButton);
+    setDislikeCount(response.dislikes, $dislikeButton);
   });
 }
 
@@ -86,8 +84,7 @@ function setDislikeCount(dislikeCount: number, $dislikeButton: Element) {
     formattedDislikes = `${(dislikeCount / 1000).toFixed(1)}K`;
   }
 
-  const $buttonText = getDislikeButtonText($dislikeButton);
-  $buttonText.innerHTML = formattedDislikes;
+  getDislikeButtonText($dislikeButton).innerHTML = formattedDislikes;
 }
 
 function main() {
@@ -100,6 +97,7 @@ function main() {
 
   const $dislikeButton = getDislikeButton();
   requestDislikeCount($dislikeButton);
+
   return $dislikeButton;
 }
 
