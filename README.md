@@ -4,7 +4,7 @@ Project structure forked from [chrome extension typescript starter](https://gith
 
 ## Prerequisites
 
-* [node + npm](https://nodejs.org/) (Current Version)
+* [node + yarn](https://nodejs.org/) (Current Version)
 * YouTube Data API v3 API Key [(getting started with Data API v3)](https://developers.google.com/youtube/v3/getting-started)
 
 ## Project Structure
