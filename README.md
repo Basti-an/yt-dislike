@@ -1,29 +1,11 @@
-# Chrome Extension TypeScript Starter
+# Bringing back youtube dislikes as a Chrome Extension!
 
-![build](https://github.com/chibat/chrome-extension-typescript-starter/workflows/build/badge.svg)
-
-Chrome Extension, TypeScript and Visual Studio Code
+Project structure forked from [chrome extension typescript starter](https://github.com/chibat/chrome-extension-typescript-starter) ♥️
 
 ## Prerequisites
 
 * [node + npm](https://nodejs.org/) (Current Version)
-
-## Option
-
-* [Visual Studio Code](https://code.visualstudio.com/)
-
-## Includes the following
-
-* TypeScript
-* Webpack
-* React
-* Jest
-* Example Code
-    * Chrome Storage
-    * Options Version 2
-    * content script
-    * count up badge number
-    * background
+* YouTube Data API v3 API Key [(getting started with Data API v3)](https://developers.google.com/youtube/v3/getting-started)
 
 ## Project Structure
 
@@ -35,36 +17,26 @@ Chrome Extension, TypeScript and Visual Studio Code
 ## Setup
 
 ```
-npm install
+yarn
 ```
 
-## Import as Visual Studio Code project
-
-...
+create a file called .env in the root folder of this project. The contents of .env are as follows:
+```
+API_KEY=YOUR_API_KEY_GOES_HERE
+```
 
 ## Build
 
 ```
-npm run build
+yarn build
 ```
 
 ## Build in watch mode
 
-### terminal
-
 ```
-npm run watch
+yarn watch
 ```
-
-### Visual Studio Code
-
-Run watch mode.
-
-type `Ctrl + Shift + B`
 
 ## Load extension to chrome
 
-Load `dist` directory
-
-## Test
-`npx jest` or `npm run test`
+Load `dist` directory as unpacked extension, remember to provide your own API_KEY via .env file at project root folder
