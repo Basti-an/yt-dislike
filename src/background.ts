@@ -1,12 +1,15 @@
 const API_KEY = process.env.API_KEY;
 
-chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+// for some strange reason, chrome port communication does not play nice with async/await
+// using await always made the sendResponse function execute immediately,
+// which is why the following code uses .then() instead 🤮
+chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (!msg.video_id) {
     sendResponse({ error: "no video id" });
     return;
   }
 
-  chrome.identity.getAuthToken({ interactive: true }, function (token) {
+  chrome.identity.getAuthToken({ interactive: true }, (token) => {
     let init = {
       method: "GET",
       async: true,
