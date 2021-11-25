@@ -77,8 +77,17 @@ function requestDislikeCount($dislikeButton: Element) {
 }
 
 function setDislikeCount(dislikeCount: number, $dislikeButton: Element) {
+  let formattedDislikes = `${dislikeCount}`;
+
+  // basic formatting
+  if (dislikeCount > 1000000) {
+    formattedDislikes = `${(dislikeCount / 1000000).toFixed(2)}M`;
+  } else if (dislikeCount > 100000) {
+    formattedDislikes = `${(dislikeCount / 1000).toFixed(1)}K`;
+  }
+
   const $buttonText = getDislikeButtonText($dislikeButton);
-  $buttonText.innerHTML = dislikeCount.toString();
+  $buttonText.innerHTML = formattedDislikes;
 }
 
 function main() {
