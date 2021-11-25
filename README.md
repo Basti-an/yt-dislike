@@ -5,7 +5,7 @@ Project structure forked from [chrome extension typescript starter](https://gith
 
 ## WHY?
 
-Although YouTube removed the dislike count, dislikes for most videos are still available via YouTube Data API v3 - so I wrote this Extension to see whether I can actually publish it to the Chrome Web Store. I want to read Googles reason for rejecting it 🤣 Also dislikes are an important quick estimator for certain kinds of videos like tutorials!
+Although YouTube removed the dislike count, dislikes for most videos are still available via YouTube Data API v3 - so I wrote this Extension to see whether I can actually publish it to the Chrome Web Store. It's more of a Chrome Web Store rejection any% speedrun. Also dislikes are an important quick estimator for certain kinds of videos like tutorials!
 
 ## Prerequisites
 
