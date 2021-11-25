@@ -1,4 +1,5 @@
 # Bringing back youtube dislikes as a Chrome Extension!
+![me disliking and mocking youtubes video announcing changes to dislikes](lmao_yt.jpg)
 
 Project structure forked from [chrome extension typescript starter](https://github.com/chibat/chrome-extension-typescript-starter) ♥️
 
