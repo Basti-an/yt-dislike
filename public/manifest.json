@@ -5,18 +5,13 @@
   "description": "Bringing back the dislike count to youtube",
   "version": "0.1",
 
-  "options_ui": {
-    "page": "options.html"
-  },
-
   "action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_icon": "icon.png"
   },
 
   "content_scripts": [
     {
-      "matches": ["*://*.youtube.com/watch*"],
+      "matches": ["*://*.youtube.com/*"],
       "run_at": "document_end",
       "js": ["js/vendor.js", "js/content_script.js"]
     }
@@ -26,7 +21,12 @@
     "service_worker": "js/background.js"
   },
 
-  "permissions": ["storage"],
+  "oauth2": {
+    "client_id": "70527182563-5bsuov422nknpcu4rapejdc25f35kv4m.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/youtube"]
+  },
+
+  "permissions": ["identity"],
 
   "host_permissions": ["*://*.youtube.com/watch*"]
 }
