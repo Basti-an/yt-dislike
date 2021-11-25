@@ -5,8 +5,10 @@
   "description": "Bringing back the dislike count to youtube",
   "version": "0.1",
 
-  "action": {
-    "default_icon": "icon.png"
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
 
   "content_scripts": [
